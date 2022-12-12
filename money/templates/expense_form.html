@@ -1,0 +1,34 @@
+{% extends 'components/base.html' %}
+{% block content %}
+<h1 class="text-center">New post</h1>
+    <form method="POST" class="forms">
+        {% csrf_token %}
+        <div class="form-group">
+            {{form.name.errors}}
+          <label>Expense Name</label><br>
+          <input type="name" name="name"  class="form__field" placeholder="breakfeast">
+        </div>
+        <div class="form-group">
+            {{form.value.errors}}
+          <label>Expense Value</label><br>
+          <input type="number" name="value"  class="form__field" placeholder="15.22">
+        </div>
+        <div class="form-group">
+            {{form.typeexpense.errors}}
+        </div>
+        <div class="form-group">
+        <label>Type of expense</label><br>
+        <select name="typeexpense" class = "form__field">
+            <option value="Monthly">Monthly</option>
+            <option value="Period">Period</option>
+            <option value="Extra">Extra</option>
+            <option value="Day by day">Day by day</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Category</label><br>
+        {{form.category}}
+    </div>
+        <button type="submit" class="save btn btn-default">Save</button>
+    </form>
+    {% endblock %}

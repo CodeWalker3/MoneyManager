@@ -1,0 +1,16 @@
+
+.navbar{
+    background-color:rgba(34,40,45,.5);
+    color:white;
+    margin-bottom:5%;
+    position:fixed;
+}
+.navbar-brand{
+    color:white !important;
+    font-size: 2rem !important;
+}
+
+  a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit !important;
+}

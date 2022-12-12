@@ -1,0 +1,123 @@
+{% extends 'components/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="space">
+        <h1 class="title text-center"> Incomes List </h1>
+        <div class="card_div">
+            <div class="col-md-10">
+                <div class="row justify-content-md-center">
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="card l-bg-cherry">
+                            <div class="card-statistic-3 p-4">
+                                <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
+                                <div class="mb-4">
+                                    <h5 class="card-title mb-0">Expense</h5>
+                                </div>
+                                <div class="row align-items-center mb-2 d-flex">
+                                    <div class="col-8">
+                                        <h2 class="d-flex align-items-center mb-0">
+                                            {{total_expense}}
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="card l-bg-blue-dark">
+                            <div class="card-statistic-3 p-4">
+                                <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
+                                <div class="mb-4">
+                                    <h5 class="card-title mb-0">Income</h5>
+                                </div>
+                                <div class="row align-items-center mb-2 d-flex">
+                                    <div class="col-8">
+                                        <h2 class="d-flex align-items-center mb-0">
+                                            {{total_income}}
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="card l-bg-green-dark">
+                            <div class="card-statistic-3 p-4">
+                                <div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
+                                <div class="mb-4">
+                                    <h5 class="card-title mb-0">Remaining Money</h5>
+                                </div>
+                                <div class="row align-items-center mb-2 d-flex">
+                                    <div class="col-8">
+                                        <h2 class="d-flex align-items-center mb-0">
+                                            {{remaining}}
+                                        </h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="fleex">
+            <div class="table-div">
+                <div class="d-flex">
+                    <button onclick="location.href='{% url 'income_new' %}'" class="btn colorful btn-default" type="button"> 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>  
+                    </button>
+                </div>
+                <table class="table">
+                    <thead class="table-secondary text-center">
+                    <th>Name</th>
+                    <th>Value</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                    <th> Delete</th>
+                    </thead>
+                    <tbody>
+                    {% for income in incomes %}
+                    <tr class="table-light text-center">
+                    <td>{{income.name}}</td>
+                    <td>{{income.value}}</td>
+                    <td>{{income.typeincome}}</td>
+                    <td>{{income.category.name}}</td>
+                    <td><button onclick="location.href='/dashboard/incomesd/{{income.id}}'" class="btn btn-outline-danger">deletar</button> </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                
+            
+            <div class="d-flex">
+                <div class="ttable_fucntions"> 
+                <div class="pagination">
+                <span class="step-links">
+                    {% if incomes.has_previous %}
+                        <a class="btn btn-secondary" href="?page=1">&laquo; Primeira Pagina</a>
+                        <a class="btn btn-secondary" href="?page={{ incomes.previous_page_number }}">Anterior</a>
+                    {% endif %}
+                    <span class="btn btn-secondary">
+                        Pagina {{ incomes.number }} de {{ incomes.paginator.num_pages }}.
+                    </span>
+                    {% if incomes.has_next %}
+                        <a class="btn btn-secondary" href="?page={{ incomes.next_page_number }}">Proxima</a>
+                        <a class="btn btn-secondary" href="?page={{ incomes.paginator.num_pages }}">Last Page &raquo;</a>
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+</div>
+</div>
+            {% include 'chart_income.html' %}
+        </div>
+    
+    </div>
+    
+</div>
+
+
+{% endblock %}

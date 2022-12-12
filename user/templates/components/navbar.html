@@ -1,0 +1,20 @@
+
+
+<nav class="navbar">
+    <div class="container-sm text-center">
+      <a class="navbar-brand" href= "/">Navbar</a>
+      
+      <div class="d-flex">
+            
+            {% if request.user.is_authenticated %}
+            <div class="p-2 nav"><a href="{% url 'expenses' %}">Expenses</a></div>
+            <div class="p-2"><a href="{% url 'incomes' %}">Incomes</a></div>
+            {% comment %} <div class="p-2"><a href="dashboard">Dashboard</a></div> {% endcomment %}
+            <div class="p-2"><a href="/logout">Logout</a></div>
+            {% else %}
+            <div class="p-2"><a href="{% url 'login' %}">Login</a></div>
+            <div class="p-2"><a href="{% url 'register' %}">Register</a></div>
+            {% endif %}
+            
+    </div>
+  </nav>
