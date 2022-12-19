@@ -15,9 +15,9 @@ colorPrimary, colorSuccess, colorDanger = '#79aec8', colorPalette[0], colorPalet
 @login_required(login_url='login')
 def my_expenses(request):
 
-    expenses = Expense.objects.filter(creation_user=request.user).filter(category__creation_user=request.user)
+    expenses = Expense.objects.filter(creation_user=request.user).filter(category__creation_user=request.user).order_by('name')
     total_expense = 0
-    incomes = Income.objects.filter(creation_user=request.user).filter(category__creation_user=request.user)
+    incomes = Income.objects.filter(creation_user=request.user).filter(category__creation_user=request.user).order_by('name')
     total_income = 0
     paginator = Paginator(expenses, 5)
     page_number = request.GET.get('page')
@@ -59,9 +59,9 @@ class CreateExpense(CreateView):
 
 @login_required(login_url='login')
 def my_incomes(request):
-    expenses = Expense.objects.filter(creation_user=request.user).filter(category__creation_user=request.user)
+    expenses = Expense.objects.filter(creation_user=request.user).filter(category__creation_user=request.user).order_by('name')
     total_expense = 0
-    incomes = Income.objects.filter(creation_user=request.user).filter(category__creation_user=request.user)
+    incomes = Income.objects.filter(creation_user=request.user).filter(category__creation_user=request.user).order_by('name')
     total_income = 0
 
     for expense in expenses:
