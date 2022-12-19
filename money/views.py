@@ -120,10 +120,10 @@ class CreateCategoryExpense(CreateView):
 class CreateCategoryIncome(CreateView):
     model = CategoryIncome
     form_class= CategoryIncomeForm
-    template_name="category_expense_form.html"
+    template_name="category_income_form.html"
 
     def get_success_url(self):
-        return reverse_lazy('expenses')
+        return reverse_lazy('incomes')
 
     def form_valid(self, form):
         obj = form.save(commit=False)
