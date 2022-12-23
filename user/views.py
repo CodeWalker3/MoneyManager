@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.http.response import  HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.urls import reverse
 # Create your views here.
 
 def cadastrar_usuario(request):
@@ -21,6 +22,8 @@ def cadastrar_usuario(request):
             user = User.objects.create_user(username=username, email=email, password=password1)
             user.save()
             return redirect('login')
+        elif password1 != password2:
+            return HttpResponse(status=303)
 
         return render(request, 'cadastro.html')
 
@@ -57,5 +60,6 @@ def index(request):
 
 @login_required(login_url='login')
 def signout(request):
-    logout(request)
-    return redirect('login')
+    if request.method == 'GET':
+        logout(request)
+    return redirect(reverse('index'))
