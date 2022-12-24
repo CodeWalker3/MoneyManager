@@ -10,7 +10,7 @@ from .views import(
     income_delete,
     chart_expense,
     chart_income,
-    pie_chart,
+    chart_income,
     CreateCategoryExpense,
     CreateCategoryIncome
     )
@@ -25,5 +25,5 @@ urlpatterns = [
     path('expensesd/<int:id>', expense_delete, name='expense_del'),
     path('chart_expense', chart_expense, name='chart_expense'),
     path('chart_income', chart_income, name='chart_income'),
-    path('pie', pie_chart, name='pie_chart' )
+    path('pie', chart_income, name='pie_chart' )
 ]

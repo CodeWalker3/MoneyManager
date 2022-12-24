@@ -61,3 +61,23 @@ class TestViews(TestCase):
 
         })
         self.assertEqual(response.status_code,200)
+
+    def test_incomes_delete_url(self):
+        response = self.client.delete(
+            reverse("incomes_del", kwargs={"id": 1}), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+    
+    def test_expenses_delete_url(self):
+        response = self.client.delete(
+            reverse("expense_del", kwargs={"id": 1}), follow=True
+        )
+        self.assertEqual(response.status_code, 200)
+    def test_charts_expenses_url(self):
+        response = self.client.get(reverse("chart_expense"))
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_charts_incomes_url(self):
+        response = self.client.get(reverse("chart_income"))
+        self.assertEqual(response.status_code, 200)

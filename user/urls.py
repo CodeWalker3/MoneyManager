@@ -6,6 +6,6 @@ from .views import logar_usuario, cadastrar_usuario, index, signout
 urlpatterns = [
     path('login/', logar_usuario, name="login"),
     path('register', cadastrar_usuario, name="register"),
-    path('logout', signout, name="logout"),
+    path('signout', signout, name="signout"),
     path('', index, name="index"),
 ]

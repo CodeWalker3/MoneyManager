@@ -54,5 +54,3 @@ class Income(models.Model):
         default=None,
         on_delete=models.SET_NULL
     )
-    def __str__(self):
-        return self.name

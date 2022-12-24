@@ -170,29 +170,6 @@ def chart_income(request):
 
     return JsonResponse(context)
 
-def pie_chart(request):
-    labels = []
-    datas = []
-    context = {
-        'title': f'Sales in ',
-        'data': {
-            'labels': labels,
-            'datasets': [{
-                'label': 'Amount ($)',
-                'backgroundColor': colorPrimary,
-                'borderColor': colorPrimary,
-                'data': datas,
-            }]
-        },
-    }
-    queryset = Income.objects.values('category__name')\
-        .annotate(category_value=Sum('value')).order_by('-category_value')\
-            .filter( creation_user = request.user).filter(category__creation_user=request.user)
-    for income in queryset:
-        labels.append(income['category__name'])
-        datas.append(income['category_value'])
-
-    return JsonResponse(context)
 
 
 

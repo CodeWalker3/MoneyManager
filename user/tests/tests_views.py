@@ -44,14 +44,15 @@ class TestViews(TestCase):
             'password1':'123456'
         })
         self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(reverse('register'))
+
     def test_create_wrong_user(self):
         response = self.clientV.post(reverse("register"), data={
             'username':'testusr', 
             'email':'test@test.cm',
-            'password':'12345',
             'password1':'1234'
         })
-        self.assertEqual(response.status_code, 303)
+        self.assertEqual(response.status_code, 302)
 
     def test_user_none_post(self):
         response = self.clientV.post(reverse("login"), data={
@@ -69,8 +70,8 @@ class TestViews(TestCase):
 
     
         
-    # def test_logout_url(self):
-    #     response = self.client.get(reverse("logout"), follow=True)
-    #     self.assertEqual(response.status_code, 200)
+    def test_logout_url(self):
+        response = self.client.get(reverse("signout"), follow=True)
+        self.assertEqual(response.status_code, 200)
 
 

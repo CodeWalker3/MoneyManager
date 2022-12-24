@@ -14,16 +14,13 @@ def cadastrar_usuario(request):
         username = request.POST.get('username')
         email = request.POST.get('email')
         password1 = request.POST.get('password1',False)
-        password2 = request.POST.get('password2',False)
         user = User.objects.filter(username=username).first()
         if user:
             return HttpResponse('Esse usuario ja existe')
-        if password1 == password2:
+        if user is None:
             user = User.objects.create_user(username=username, email=email, password=password1)
             user.save()
             return redirect('login')
-        elif password1 != password2:
-            return HttpResponse(status=303)
 
         return render(request, 'cadastro.html')
 
