@@ -2,7 +2,7 @@ from django.test import Client, TestCase
 from django.contrib.auth.models import User
 from django.urls import reverse
 from money.models import CategoryExpense, CategoryIncome, Expense, Income
-
+import pytest
 class TestViews(TestCase):
     def setUp(self):
         user = User.objects.create(username="testuser", email="test")

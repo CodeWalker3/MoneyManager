@@ -2,6 +2,7 @@ import datetime
 from django.test import Client, TestCase
 from django.contrib.auth.models import User
 from django.urls import reverse
+import pytest
 
 # Create your tests here.
 
